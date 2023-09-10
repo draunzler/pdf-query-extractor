@@ -8,16 +8,16 @@ def extract_data_from_pdf(pdf_path):
     pdf.load()
     
     # Define your queries here to extract specific data
-    keyword1 =  pdf.pq('LTTextLineHorizontal:contains("{}")'.format("Buyer's Order No."))[0] 
+    keyword1 =  pdf.pq('LTTextLineHorizontal:contains("{}")'.format("Any Keyword"))[0] 
     x1_0 = float(keyword1.get('x0',0)) 
     y1_0 = float(keyword1.get('y0',0)) - 10
-    x1_1 = float(keyword1.get('x1',0)) 
+    x1_1 = float(keyword1.get('x1',0))                 #set the co-ordinates according to need
     y1_1 = float(keyword1.get('y1',0)) - 10
     data1 = pdf.pq('LTTextLineHorizontal:overlaps_bbox("%s, %s, %s, %s")' % (x1_0, y1_0, x1_1, y1_1)).text()
-    keyword2 =  pdf.pq('LTTextLineHorizontal:contains("{}")'.format("Shipping Address"))[0] 
+    keyword2 =  pdf.pq('LTTextLineHorizontal:contains("{}")'.format("Any Keyword"))[0] 
     x2_0 = float(keyword2.get('x0',0))
     y2_0 = float(keyword2.get('y0',0)) - 40
-    x2_1 = float(keyword2.get('x1',0)) + 220
+    x2_1 = float(keyword2.get('x1',0)) + 220           #set the co-ordinates according to need
     y2_1 = float(keyword2.get('y1',0)) - 10
     data2 = pdf.pq('LTTextLineHorizontal:overlaps_bbox("%s, %s, %s, %s")' % (x2_0, y2_0, x2_1, y2_1)).text()
     # Add more queries as needed
